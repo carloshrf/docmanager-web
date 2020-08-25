@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
-const Button: React.FC = () => {
+import { Container } from './styles';
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Button: React.FC<ButtonProps> = ({children, ...rest}) => {
 
   return (
-    <button style={{width: '100%', borderRadius: 'none'}}>Entrar</button>
+    <Container type="button" style={{width: '100%', borderRadius: 'none'}} {...rest}>
+      {children}
+    </Container>
   );
 }
 

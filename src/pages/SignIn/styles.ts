@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import signinBackground from '../../assets/signin-background.png';
 import signinContentBackground from '../../assets/signin-content-background.png';
-import backgroundImage from '../../assets/signin-background-side.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -53,7 +52,6 @@ export const Background = styled.div`
   width: 65%;
   height: 100%;
 
-  background-image: url(${backgroundImage});
-
+  background-color: green;
   background-size: cover;
 `;
