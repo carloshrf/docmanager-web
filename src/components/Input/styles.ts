@@ -67,12 +67,12 @@ export const Container = styled.div<InputProps>`
     }
     &:focus + span {
       transform: scale(.8) translateY(-15px);
-      color: #000;
+      color: #5994FF;
     }
     ${({ hasValue }) => hasValue && css`
       & + span {
         transform: scale(.8) translateY(-15px);
-        color: #000;
+        color: #5994FF;
       }
     `}
   }

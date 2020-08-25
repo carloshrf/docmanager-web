@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
+import { Form } from '@unform/web';
+
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { FiKey, FiLock, FiMail } from 'react-icons/fi';
+import { FiLock, FiMail } from 'react-icons/fi';
 
 import { Container, Main, Content, Background } from './styles';
 
@@ -12,12 +14,16 @@ const SignIn: React.FC = () => {
     password: '',
   });
 
+  function handleSubmit(data: object): void {
+    console.log(data);
+  }
+
   return (
     <Container>
       <Main>
         <Content>
-          <p>Entrar</p>
-          <form>
+          <h1>Entrar</h1>
+          <Form onSubmit={handleSubmit}>
             <Input
               value={inputValues.email}
               icon={FiMail}
@@ -49,11 +55,12 @@ const SignIn: React.FC = () => {
             <Button type="submit">
               Entrar
             </Button>
-            </form>
+          </Form>
+          <p>
             <a href="cadastrar">
-              <FiKey />
               Esqueci minha senha
             </a>
+          </p>
         </Content>
         <Background>
         </Background>

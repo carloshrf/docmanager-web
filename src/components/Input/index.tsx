@@ -1,5 +1,6 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
 import { IconBaseProps } from 'react-icons';
+import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
@@ -10,14 +11,25 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({label, icon: Icon, value, ...rest}) => {
+const Input: React.FC<InputProps> = ({name, label, icon: Icon, value, ...rest}) => {
+  const inputRef = useRef(null);
+  const { fieldName, defaultValue, error, registerField } = useField(name);
+
   const hasValue = Boolean(!!value);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef.current,
+      path: 'value'
+    });
+  }, [fieldName, registerField]);
 
   return (
     <Container hasValue={hasValue}>
     {Icon && <Icon size={17}/>}
       <label>
-        <input type="text" {...rest}/>
+        <input ref={inputRef} type="text" {...rest}/>
         <span>{label}</span>
       </label>
     </Container>
