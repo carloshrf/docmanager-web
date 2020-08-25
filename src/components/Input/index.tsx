@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
 import { IconBaseProps } from 'react-icons';
 
-import { InputField, Span, Label, InputContainer } from './styles';
+import { Container } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -14,13 +14,13 @@ const Input: React.FC<InputProps> = ({label, icon: Icon, value, ...rest}) => {
   const hasValue = Boolean(!!value);
 
   return (
-    <InputContainer>
-    {Icon && <Icon />}
-      <Label>
-        <InputField type="text" hasValue={hasValue} {...rest}/>
-        <Span>{label}</Span>
-      </Label>
-    </InputContainer>
+    <Container hasValue={hasValue}>
+    {Icon && <Icon size={17}/>}
+      <label>
+        <input type="text" {...rest}/>
+        <span>{label}</span>
+      </label>
+    </Container>
   );
 }
 

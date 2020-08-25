@@ -4,61 +4,76 @@ interface InputProps {
   hasValue: boolean;
 }
 
-export const InputContainer = styled.div`
+export const Container = styled.div<InputProps>`
   position: relative;
-`
+  width: 100%;
 
-export const Span = styled.span`
-  font-family: Poppins;
-  height: 57px;
-  position: absolute;
-  top: 0;
-  /* left: 5px; */
+  margin-bottom: 10px;
+  padding: 16px 0 0;
 
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 
-  transform-origin: 0% 0%;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-
-  padding-bottom: 5px;
-
-  transition: .1s ease-in-out;
-`;
-
-export const Label = styled.label`
-`;
-
-
-export const InputField = styled.input<InputProps>`
-  display: block;
-  width: 100%;
-  height: 57px;
-  font-size: 16px;
-
-  outline: 0;
-  border: 0;
-  border-top: 4px solid transparent;
-  border-bottom: 1px solid #000;
-  border-radius: 0;
-
-  padding: 16px 0 0px;
-  margin-bottom: 30px;
-
-  resize: none;
-  transition: border-color .3s;
-
-  &:focus {
-    border-bottom-color: var(--primary);
+  svg {
+    margin-top: 10px;
+    margin-right: 10px;
   }
-  &:focus:not([type="color"]) + span {
-    transform: scale(.6) translateY(-13px);
+
+  label {
+    display: flex;
+    flex: 1;
   }
-  ${({ hasValue }) => hasValue && css`
+
+  span {
+    font-family: Poppins;
+    height: 50px;
+    position: absolute;
+    top: 15px;
+    color: var(--color-label);
+
+    display: flex;
+    align-items: flex-end;
+
+    transform-origin: 0% 0%;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+
+    padding-bottom: 5px;
+
+    transition: .1s ease-in-out;
+  }
+
+  input {
+    height: 50px;
+    font-size: 16px;
+    width: 100%;
+
+    background: transparent;
+
+    outline: 0;
+    border: 0;
+    padding-top: 15px;
+
+    border-radius: 0;
+    border-bottom: 1px solid #000;
+    border-top: 4px solid transparent;
+
+    resize: none;
+    transition: border-color .3s;
+
+    &:focus {
+      border-bottom-color: var(--primary);
+    }
+    &:focus + span {
+      transform: scale(.8) translateY(-15px);
+      color: #000;
+    }
+    ${({ hasValue }) => hasValue && css`
       & + span {
-        transform: scale(.6) translateY(-13px);
+        transform: scale(.8) translateY(-15px);
+        color: #000;
       }
     `}
+  }
 `;
