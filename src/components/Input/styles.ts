@@ -63,7 +63,7 @@ export const Container = styled.div<InputProps>`
     transition: border-color .3s;
 
     &:focus {
-      border-bottom-color: var(--primary);
+      border-bottom-color: #5994FF;
     }
     &:focus + span {
       transform: scale(.8) translateY(-15px);
