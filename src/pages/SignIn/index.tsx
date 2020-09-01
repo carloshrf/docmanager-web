@@ -1,7 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -15,8 +17,12 @@ const SignIn: React.FC = () => {
     password: '',
   });
 
+  const formRef = useRef<FormHandles>(null);
+
   const handleSubmit = useCallback(async (data: object) => {
     try {
+      formRef.current?.setErrors({});
+
       const schema = Yup.object().shape({
         email: Yup.string()
           .required('E-mail obrigatório')
@@ -28,8 +34,11 @@ const SignIn: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
     } catch (err) {
-      console.log(err);
+      const errors = getValidationErrors(err);
+
+      formRef.current?.setErrors(errors);
     }
   }, []);
 
@@ -38,13 +47,13 @@ const SignIn: React.FC = () => {
       <Main>
         <Content>
           <h1>Entrar</h1>
-          <Form onSubmit={handleSubmit}>
+          <Form ref={formRef} onSubmit={handleSubmit}>
             <Input
               value={inputValues.email}
               icon={FiMail}
               label="E-mail"
               name="email"
-              type="email"
+              type="text"
               onChange={(e) =>
                 setInputValues({
                   ...inputValues,

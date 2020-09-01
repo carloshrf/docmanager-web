@@ -77,3 +77,10 @@ export const Container = styled.div<InputProps>`
     `}
   }
 `;
+
+export const ErrorMessage = styled.p`
+  font-size: 12px !important;
+  width: 100%;
+  text-align: center;
+  color: red;
+`;

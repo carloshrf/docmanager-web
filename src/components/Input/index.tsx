@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { useField } from '@unform/core';
 
-import { Container } from './styles';
+import { Container, ErrorMessage } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -26,13 +26,16 @@ const Input: React.FC<InputProps> = ({name, label, icon: Icon, value, ...rest}) 
   }, [fieldName, registerField]);
 
   return (
-    <Container hasValue={hasValue}>
-    {Icon && <Icon size={17}/>}
-      <label>
-        <input ref={inputRef} type="text" {...rest}/>
-        <span>{label}</span>
-      </label>
-    </Container>
+    <>
+      <Container hasValue={hasValue}>
+      {Icon && <Icon size={17}/>}
+        <label>
+          <input ref={inputRef} type="text" {...rest}/>
+          <span>{label}</span>
+        </label>
+      </Container>
+      <ErrorMessage>{error}</ErrorMessage>
+    </>
   );
 }
 
