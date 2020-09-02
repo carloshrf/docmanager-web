@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 
+import ToolTip from '../ToolTip';
+
 interface InputProps {
   hasValue: boolean;
+  isErrored: boolean;
 }
 
 export const Container = styled.div<InputProps>`
@@ -51,6 +54,7 @@ export const Container = styled.div<InputProps>`
 
     background: transparent;
 
+    padding-right: 5px;
     outline: 0;
     border: 0;
     padding-top: 15px;
@@ -61,6 +65,10 @@ export const Container = styled.div<InputProps>`
 
     resize: none;
     transition: border-color .3s;
+
+    ${({ isErrored }) => isErrored && css`
+      border-bottom-color: #c53030;
+    `}
 
     &:focus {
       border-bottom-color: #5994FF;
@@ -78,9 +86,28 @@ export const Container = styled.div<InputProps>`
   }
 `;
 
-export const ErrorMessage = styled.p`
-  font-size: 12px !important;
-  width: 100%;
-  text-align: center;
-  color: red;
+// export const ErrorMessage = styled.p`
+//   font-size: 12px !important;
+//   width: 100%;
+//   text-align: center;
+//   color: #c53030;
+// `;
+
+export const Error = styled(ToolTip)`
+  svg {
+    margin-right: 0;
+    margin-top: 25px;
+  }
+
+  span {
+    background: #c53030;
+    top: -35px;
+    height: 100% !important;
+    color: #FFF;
+
+    &::before {
+      border-color: #c53030 transparent;
+    }
+  }
+
 `;
