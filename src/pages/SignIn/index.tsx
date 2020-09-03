@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useContext } from 'react';
 
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import AuthContext from '../../context/AuthContext';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { FiLock, FiMail } from 'react-icons/fi';
@@ -17,6 +18,8 @@ const SignIn: React.FC = () => {
     password: '',
   });
 
+  const auth = useContext(AuthContext);
+  console.log(auth);
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(async (data: object) => {
@@ -28,7 +31,7 @@ const SignIn: React.FC = () => {
           .required('E-mail obrigatório')
           .email('Digite um e-mail válido'),
         password: Yup.string()
-          .min(6, 'Senha mínima de 6 dígitos'),
+          .min(6, 'Senha obrigatória'),
       });
 
       await schema.validate(data, {
@@ -80,11 +83,13 @@ const SignIn: React.FC = () => {
               Entrar
             </Button>
           </Form>
+
           <p>
             <a href="cadastrar">
               Esqueci minha senha
             </a>
           </p>
+
         </Content>
         <Background>
         </Background>
