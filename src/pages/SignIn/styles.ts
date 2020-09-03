@@ -103,6 +103,5 @@ export const Background = styled.div`
   height: 100%;
 
   background-image: url(${signinBackgroundSide});
-  background-color: green;
   background-size: cover;
 `;
