@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useRef, useContext } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { FiLock, FiMail } from 'react-icons/fi';
@@ -23,8 +23,9 @@ const SignIn: React.FC = () => {
     password: '',
   });
 
-  const { signIn } = useContext(AuthContext);
   const formRef = useRef<FormHandles>(null);
+
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
