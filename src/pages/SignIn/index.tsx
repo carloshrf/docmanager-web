@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import { useAuth } from '../../hooks/AuthContext';
+import Loading from '../../components/Loading';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { FiLock, FiMail } from 'react-icons/fi';
@@ -18,6 +19,7 @@ interface SignInFormData {
 }
 
 const SignIn: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
@@ -26,6 +28,10 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+
+  const fakeRequest = useCallback(() => {
+    return new Promise(resolve => setTimeout(() => resolve(), 2500));
+  }, []);
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
@@ -54,55 +60,65 @@ const SignIn: React.FC = () => {
     }
   }, [signIn]);
 
+  useEffect(() => {
+    fakeRequest().then(() => {
+      setIsLoading(false);
+    });
+  }, []);
+
   return (
     <Container>
-      <Main>
-        <Content>
-          <h1>Entrar</h1>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input
-              value={inputValues.email}
-              icon={FiMail}
-              label="E-mail"
-              name="email"
-              type="text"
-              onChange={(e) =>
-                setInputValues({
-                  ...inputValues,
-                  email: e.target.value
-                })
-              }
-            />
+      {
+        !!isLoading
+        ? <Loading />
+        : <Main>
+          <Content>
+            <h1>Entrar</h1>
+            <Form ref={formRef} onSubmit={handleSubmit}>
+              <Input
+                value={inputValues.email}
+                icon={FiMail}
+                label="E-mail"
+                name="email"
+                type="text"
+                onChange={(e) =>
+                  setInputValues({
+                    ...inputValues,
+                    email: e.target.value
+                  })
+                }
+              />
 
-            <Input
-              value={inputValues.password}
-              label="Senha"
-              icon={FiLock}
-              name="password"
-              type="password"
-              onChange={(e) =>
-                setInputValues({
-                  ...inputValues,
-                  password: e.target.value
-                })
-              }
-            />
+              <Input
+                value={inputValues.password}
+                label="Senha"
+                icon={FiLock}
+                name="password"
+                type="password"
+                onChange={(e) =>
+                  setInputValues({
+                    ...inputValues,
+                    password: e.target.value
+                  })
+                }
+              />
 
-            <Button type="submit">
-              Entrar
-            </Button>
-          </Form>
+              <Button type="submit">
+                Entrar
+              </Button>
+            </Form>
 
-          <p>
-            <a href="cadastrar">
-              Esqueci minha senha
-            </a>
-          </p>
+            <p>
+              <a href="cadastrar">
+                Esqueci minha senha
+              </a>
+            </p>
 
-        </Content>
-        <Background>
-        </Background>
-      </Main>
+          </Content>
+          <Background>
+          </Background>
+        </Main>
+      }
     </Container>
   );
 }
