@@ -47,41 +47,10 @@ export const Content = styled.div`
   }
 
   button {
-    border-radius: 0;
-    padding: 10px;
-    color: #FFF;
     font-size: 18px;
     font-weight: 100;
     letter-spacing: 2.5px;
     margin: 40px 0 20px;
-    background: rgb(0,254,255);
-    background: linear-gradient(90deg, rgba(0,254,255,1) 0%, rgba(0,69,255,1) 100%);
-    position: relative;
-    transition: transform .3s ease-in-out;
-
-    z-index: 1;
-
-    &::before {
-      position: absolute;
-      content: "";
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgb(0,69,255);
-      background: linear-gradient(90deg, rgba(0,69,255,1) 0%, rgba(0,254,255,1) 100%);
-      z-index: -1;
-      transition: opacity 0.3s linear;
-      opacity: 0;
-    }
-
-    &:hover {
-      transform: scale(1.01);
-    }
-
-    &:hover::before{
-      opacity: 1;
-    }
   }
 
   p {
