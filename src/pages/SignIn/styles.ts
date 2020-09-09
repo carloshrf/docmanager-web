@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   background-image: url(${signinBackground});
   background-size: cover;
+  overflow: hidden;
 `;
 
 export const Main = styled.div`
