@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
-  const { addToast, removeToast } = useToast();
+  const { addToast } = useToast();
 
   const fakeRequest = useCallback(() => {
     return new Promise(resolve => setTimeout(() => resolve(), 2500));

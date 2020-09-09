@@ -10,6 +10,7 @@ interface InputProps {
 export const Container = styled.div<InputProps>`
   position: relative;
   width: 100%;
+  max-height: 66px;
 
   margin-bottom: 10px;
   padding: 16px 0 0;
