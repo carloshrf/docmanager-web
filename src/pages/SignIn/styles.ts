@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import signinBackground from '../../assets/signin-background.png';
 import signinContentBackground from '../../assets/signin-content-background.png';
@@ -40,6 +40,21 @@ export const Content = styled.div`
   background-image: url(${signinContentBackground});
 
   background-size: cover;
+`;
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  animation: ${appearFromLeft} 1s;
 
   p {
     font-family: Poppins;

@@ -4,6 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
@@ -12,7 +13,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { FiLock, FiMail } from 'react-icons/fi';
 
-import { Container, Main, Content, Background } from './styles';
+import { Container, Main, Content, Background, AnimationContainer } from './styles';
 
 interface SignInFormData {
   email: string;
@@ -83,47 +84,48 @@ const SignIn: React.FC = () => {
         ? <Loading />
         : <Main>
           <Content>
-            <h1>Entrar</h1>
-            <Form ref={formRef} onSubmit={handleSubmit}>
-              <Input
-                value={inputValues.email}
-                icon={FiMail}
-                label="E-mail"
-                name="email"
-                type="text"
-                onChange={(e) =>
-                  setInputValues({
-                    ...inputValues,
-                    email: e.target.value
-                  })
-                }
-              />
+            <AnimationContainer>
+              <h1>Entrar</h1>
+              <Form ref={formRef} onSubmit={handleSubmit}>
+                <Input
+                  value={inputValues.email}
+                  icon={FiMail}
+                  label="E-mail"
+                  name="email"
+                  type="text"
+                  onChange={(e) =>
+                    setInputValues({
+                      ...inputValues,
+                      email: e.target.value
+                    })
+                  }
+                />
 
-              <Input
-                value={inputValues.password}
-                label="Senha"
-                icon={FiLock}
-                name="password"
-                type="password"
-                onChange={(e) =>
-                  setInputValues({
-                    ...inputValues,
-                    password: e.target.value
-                  })
-                }
-              />
+                <Input
+                  value={inputValues.password}
+                  label="Senha"
+                  icon={FiLock}
+                  name="password"
+                  type="password"
+                  onChange={(e) =>
+                    setInputValues({
+                      ...inputValues,
+                      password: e.target.value
+                    })
+                  }
+                />
 
-              <Button type="submit">
-                Entrar
-              </Button>
-            </Form>
+                <Button type="submit">
+                  Entrar
+                </Button>
+              </Form>
 
-            <p>
-              <a href="cadastrar">
-                Esqueci minha senha
-              </a>
-            </p>
-
+              <p>
+                <Link to="/">
+                  Esqueci minha senha
+                </Link>
+              </p>
+            </AnimationContainer>
           </Content>
           <Background>
           </Background>
