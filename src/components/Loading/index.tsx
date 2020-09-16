@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Spinner } from './styles';
 const Loading: React.FC = () => {
 
   return (
     <Container>
-      Loading...
+      <Spinner />
+      <strong>Loading...</strong>
     </Container>
   )
 
