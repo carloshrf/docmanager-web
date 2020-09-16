@@ -27,6 +27,17 @@ export const Main = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 1100px) {
+    width: 600px;
+    border-radius: 0;
+  }
+
+  @media (max-width: 750px) {
+    width: 320px;
+    height: 100%;
+    border-radius: 0;
+  }
 `;
 
 export const Content = styled.div`
@@ -40,6 +51,25 @@ export const Content = styled.div`
   background-image: url(${signinContentBackground});
 
   background-size: cover;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    pading: 60px 10%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+  }
+
+  @media (max-width: 750px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    padding: 0 20px;
+  }
 `;
 
 const appearFromLeft = keyframes`
@@ -53,7 +83,7 @@ const appearFromLeft = keyframes`
   }
 `;
 
-export const AnimationContainer = styled.div`
+export const FormContainer = styled.div`
   animation: ${appearFromLeft} 1s;
 
   p {
@@ -81,6 +111,18 @@ export const AnimationContainer = styled.div`
       color: #3D4490;
     }
   }
+
+  @media (max-width: 750px) {
+    padding: 0 5%;
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    div {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 export const Background = styled.div`
@@ -89,4 +131,13 @@ export const Background = styled.div`
 
   background-image: url(${signinBackgroundSide});
   background-size: cover;
+
+  @media (max-width: 1100px) {
+    width: 0%;
+  }
+
+  @media (max-width: 750px) {
+    width: 0;
+    display: none;
+  }
 `;
