@@ -34,7 +34,7 @@ export const Main = styled.div`
   }
 
   @media (max-width: 750px) {
-    width: 320px;
+    width: 100%;
     height: 100%;
     border-radius: 0;
   }
@@ -113,7 +113,7 @@ export const FormContainer = styled.div`
   }
 
   @media (max-width: 750px) {
-    padding: 0 5%;
+    padding: 0 10%;
 
     h1 {
       margin-bottom: 20px;
